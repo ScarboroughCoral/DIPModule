@@ -117,10 +117,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BMP.c" />
+    <ClCompile Include="BMPUtil.c" />
+    <ClCompile Include="Histogram.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMP.h" />
+    <ClInclude Include="BMPUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,67 +1,48 @@
 #include "BMP.h"
+#include "BMPUtil.h"
 #include<stdlib.h>
 #include<stdio.h>
 
 #pragma warning(disable : 4996)
 
 void BMPResolver() {
-	FILE * fp = fopen("width.bmp", "rb");
-	if (fp == NULL)
-	{
-		getchar();
-		return;
-	}
+	
+
 	BMFILEHEADER header;
 	INFOHEADER info;
-	fread(&header, sizeof(header), 1, fp);
-	fread(&info, sizeof(info), 1, fp);
-	RGBQUAD * prgbquad = (RGBQUAD *)malloc(info.colorUsed * sizeof(RGBQUAD));
-	fread(prgbquad, sizeof(RGBQUAD), info.colorUsed, fp);
-	//fseek(fp, header.offset, 0);
-	RGBITEM *pitem = (RGBITEM *)malloc(info.sizeImage);
+	RGBITEM ** data = malloc(sizeof(RGBITEM*));
+	RGBQUAD ** palette = malloc(sizeof(RGBITEM*));
 
-	unsigned itemCounts = info.sizeImage /3;
-	fread(pitem, sizeof(RGBITEM), itemCounts, fp);
-
-
+	unsigned pixelCounts = BMPReader("width.bmp", &header, &info, palette, data);
 	//修改单色
-	for (size_t i = 0; i < itemCounts; i++)
-	{
-		//printf("%d\n", pitem->r);
-		(pitem+i)->r = 0;
-		//(pitem+i)->g = 0;
-		(pitem + i)->b = 0;
-	}
+	//for (size_t i = 0; i < pixelCounts; i++)
+	//{
+	//	//printf("%p-%p\n", *data,*data+1);
+	//	//(*data+i)->r = 0;
+	//	(*data + i)->g = 0;
+	//	(*data + i)->b = 0;
+	//}
 
 	//灰度化
 	int gray;
-	/*for (size_t i = 0; i < itemCounts; i++)
+	/*for (size_t i = 0; i < pixelCounts; i++)
 	{
-		gray = ((pitem + i)->r * 299 + (pitem + i)->g * 587 + (pitem + i)->b * 114 + 500) / 1000;
-		(pitem + i)->r = gray;
-		(pitem + i)->g = gray;
-		(pitem + i)->b = gray;
+		gray = ((*data + i)->r * 299 + (*data + i)->g * 587 + (*data + i)->b * 114 + 500) / 1000;
+		(*data + i)->r = gray;
+		(*data + i)->g = gray;
+		(*data + i)->b = gray;
 	}*/
 
 	//灰度图反色
-	/*for (size_t i = 0; i < itemCounts; i++)
+	for (size_t i = 0; i < pixelCounts; i++)
 	{
-		gray = ((pitem + i)->r * 299 + (pitem + i)->g * 587 + (pitem + i)->b * 114 + 500) / 1000;
-		(pitem + i)->r = 255 - gray;
-		(pitem + i)->g = 255 - gray;
-		(pitem + i)->b = 255 - gray;
-	}*/
-
-	char * result = "singleColor1.bmp";
-	FILE * rp = fopen(result, "wb");
-	if (rp == NULL)
-	{
-		return;
+		gray = ((*data + i)->r * 299 + (*data + i)->g * 587 + (*data + i)->b * 114 + 500) / 1000;
+		(*data + i)->r = 255 - gray;
+		(*data + i)->g = 255 - gray;
+		(*data + i)->b = 255 - gray;
 	}
-	fwrite(&header, sizeof(header), 1, rp);
-	fwrite(&info, sizeof(info), 1, rp);
-	//fseek(rp, header.offset, 0);
-	fwrite(prgbquad, sizeof(RGBQUAD), info.colorUsed, rp);
-	fwrite(pitem, sizeof(RGBITEM), info.sizeImage / 3, rp);
-	printf("Output singleColor.bmp  successfully!\n");
+
+	char * result = "testaw.bmp";
+
+	BMPWriter(result, &header, &info, palette, data);
 }

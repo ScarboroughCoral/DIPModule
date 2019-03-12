@@ -3,29 +3,29 @@
 
 typedef struct bitmapFileHeader {
 	unsigned char type[2];
-	unsigned size;
+	unsigned char size[4];
 	unsigned char resvered1[2];
 	unsigned char reserved2[2];
-	unsigned offset;
+	unsigned char offset[4];
 } BMFILEHEADER;
 
 typedef struct rgb {
-	unsigned char r;
 	unsigned char b;
 	unsigned char g;
+	unsigned char r;
 }RGBITEM;
 
 
 typedef struct bitMapInfoHeader {
 	unsigned infoHeaderSize;
-	unsigned long width;
-	unsigned long height;
+	long width;
+	long height;
 	unsigned short planes;
 	unsigned short colorCount;
 	unsigned isCompressed;
 	unsigned sizeImage;
-	unsigned long xPelsPerMeter;
-	unsigned long yPelsPerMeter;
+	long xPelsPerMeter;
+	long yPelsPerMeter;
 	unsigned colorUsed;
 	unsigned colorImportant;
 }INFOHEADER;
