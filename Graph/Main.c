@@ -11,7 +11,12 @@ int main(){
 	/*
 	第一次作业：BMP文件处理
 	*/
-	BMPResolver();
+	//BMPResolver();
+
+	/*
+	第二次作业：直方图处理
+	*/
+	Histogram();
 
 	system("pause");
 	return 0;
