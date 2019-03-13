@@ -13,17 +13,17 @@ int main(){
 	/*
 	第二次作业：直方图处理
 	*/
-	//HistogramStatic();
-	BMFILEHEADER header;
+	HistogramStatic();
+	/*BMFILEHEADER header;
 	INFOHEADER info;
 
 	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
 	unsigned char **a = malloc(sizeof(unsigned char *));
 
-	BMPReader8("grayHistogram.bmp", &header, &info, palette, a);
-	BMPWriter8("8result.bmp", &header, &info, palette, a);
+	BMPReader8("gray.bmp", &header, &info, palette, a);
+	BMPWriter8("8result.bmp", &header, &info, palette, a);*/
 
-	
+	//BMP24To8Gray("1.bmp", "2.bmp");
 	
 	system("pause");
 	return 0;

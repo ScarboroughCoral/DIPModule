@@ -19,7 +19,6 @@ void outputGrayscaleHistogram(const char * filename, double distribution[], INFO
 	*(unsigned *)header.offset = sizeof(header)+sizeof(info)+256*sizeof(RGBQUAD);
 
 	// set info
-	info.colorCount = 30;
 	info.width = 100* WIDTH;
 	info.height = HEIGHT * L;
 	info.infoHeaderSize = 40;

@@ -10,7 +10,7 @@ void BMPResolver() {
 	BMFILEHEADER header;
 	INFOHEADER info;
 	RGBITEM ** data = malloc(sizeof(RGBITEM*));
-	RGBQUAD ** palette = malloc(sizeof(RGBITEM*));
+	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
 
 	unsigned pixelCounts = BMPReader("width.bmp", &header, &info, palette, data);
 	//ÐÞ¸Äµ¥É«
