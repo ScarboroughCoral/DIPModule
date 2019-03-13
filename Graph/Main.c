@@ -1,8 +1,5 @@
 #include <stdlib.h>
-//#include <Windows.h>
-//#include "BMP.h"
-#include "BMPUtil.h"
-
+#include "BMPHelper.h"
 
 
 int main(){
@@ -16,8 +13,18 @@ int main(){
 	/*
 	第二次作业：直方图处理
 	*/
-	Histogram();
+	//HistogramStatic();
+	BMFILEHEADER header;
+	INFOHEADER info;
 
+	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
+	unsigned char **a = malloc(sizeof(unsigned char *));
+
+	BMPReader8("grayHistogram.bmp", &header, &info, palette, a);
+	BMPWriter8("8result.bmp", &header, &info, palette, a);
+
+	
+	
 	system("pause");
 	return 0;
 }

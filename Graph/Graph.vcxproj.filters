@@ -21,10 +21,13 @@
     <ClCompile Include="BMP.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Histogram.c">
+    <ClCompile Include="BMPUtil.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BMPUtil.c">
+    <ClCompile Include="HistogramStatic.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Histogram.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,6 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="BMPHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Histogram.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

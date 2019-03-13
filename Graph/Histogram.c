@@ -1,30 +1,77 @@
 #include "BMPHelper.h"
+#include "Histogram.h"
+#include <stdlib.h>
 #include <stdio.h>
 
-void Histogram() {
+#define WIDTH 8
+#define HEIGHT 3
+#define L 256
 
+
+void outputGrayscaleHistogram(const char * filename, double distribution[], INFOHEADER *origin) {
 	BMFILEHEADER header;
-	INFOHEADER info;
-	RGBITEM ** data = malloc(sizeof(RGBITEM*));
-	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
+	INFOHEADER info = *origin;
 
-	unsigned pixelCounts = BMPReader("test.bmp", &header, &info, palette, data);
 
-	int histogram[256] = { 0 };
+	// set header
+	header.type[0] = 'B';
+	header.type[1] = 'M';
+	*(unsigned *)header.offset = sizeof(header)+sizeof(info)+256*sizeof(RGBQUAD);
 
-	for (size_t i = 0; i < pixelCounts; i++)
-	{
-		int gray = ((*data + i)->r * 299 + (*data + i)->g * 587 + (*data + i)->b * 114 + 500) / 1000;
-		histogram[gray]++;
-	}
+	// set info
+	info.colorCount = 30;
+	info.width = 100* WIDTH;
+	info.height = HEIGHT * L;
+	info.infoHeaderSize = 40;
+	info.planes = 1;
+	info.sizeImage = info.width*info.height;
+	info.colorCount = 8;
+	info.colorUsed = 256;
+
+	*(unsigned *)header.size = header.offset + info.sizeImage;
+
+
+	RGBQUAD ** palette = malloc(sizeof(RGBQUAD *));
+	*palette = malloc(256* sizeof(RGBQUAD));
 
 	for (size_t i = 0; i < 256; i++)
 	{
-		if (histogram[i] * 100.0 / pixelCounts<0.01)
-		{
-			continue;
-		}
-		printf("灰度级【%3d】统计像素概率：%4.2f%%\n", i, histogram[i]*100.0/ pixelCounts);
+		((*palette) + i)->r = ((*palette) + i)->b = ((*palette) + i)->g = i;
 	}
+
+	unsigned char image[HEIGHT * L][100 * WIDTH];
+	for (size_t i = 0; i < HEIGHT * L; i++)
+	{
+		for (size_t j = 0; j < 100 * WIDTH; j++)
+		{
+			image[i][j] = 255;
+		}
+	}
+
+	for (size_t i = 0; i < info.height; i += HEIGHT)
+	{
+		for (size_t j = 0; j < info.width; j++)
+		{
+			if (distribution[i/HEIGHT]>0.25)
+			{
+				distribution[i / HEIGHT] = 0.25;
+			}
+			if (j/ WIDTH >= distribution[i/ HEIGHT]*100*4)
+			{
+				break;
+			}
+			for (size_t k = 0; k < HEIGHT; k++)
+			{
+				image[i + k][j] = 0;
+			}
+		}
+	}
+
+	unsigned char *p = image;
+	unsigned char *q = &p;
+
+	//printf("%p,%p,%d", p, q,*q);
+
+	BMPWriter8(filename, &header, &info, palette, q);
 
 }

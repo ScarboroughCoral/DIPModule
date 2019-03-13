@@ -1,4 +1,3 @@
-#include "BMP.h"
 #include "BMPUtil.h"
 #include<stdlib.h>
 #include<stdio.h>

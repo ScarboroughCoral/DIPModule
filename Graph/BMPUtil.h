@@ -25,3 +25,5 @@ int BMPReader(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RGB
 */
 
 int BMPWriter(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RGBQUAD ** palette, RGBITEM ** data);
+int BMPWriter8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RGBQUAD ** palette, unsigned char ** data);
+int BMPReader8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RGBQUAD ** palette, unsigned char ** data);

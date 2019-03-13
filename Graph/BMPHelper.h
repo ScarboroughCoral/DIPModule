@@ -3,3 +3,5 @@
 #include "BMP.h"
 
 #include "BMPUtil.h"
+
+#include "Histogram.h"

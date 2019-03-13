@@ -119,12 +119,14 @@
     <ClCompile Include="BMP.c" />
     <ClCompile Include="BMPUtil.c" />
     <ClCompile Include="Histogram.c" />
+    <ClCompile Include="HistogramStatic.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMP.h" />
     <ClInclude Include="BMPHelper.h" />
     <ClInclude Include="BMPUtil.h" />
+    <ClInclude Include="Histogram.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

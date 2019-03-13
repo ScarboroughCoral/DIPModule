@@ -20,8 +20,11 @@ int BMPReader(const char* filename,BMFILEHEADER* header,INFOHEADER * info,RGBQUA
 	unsigned rowPixelNumber = realWidth / sizeof(RGBITEM);
 	unsigned remanentByteOfRow = realWidth % sizeof(RGBITEM);
 	unsigned pixelCounts = rowPixelNumber * info->height;
-	fseek(fp, offset, 0);
+	unsigned color = info->colorUsed;
 
+	*palette = (RGBQUAD *)malloc(info->colorUsed * sizeof(RGBQUAD));
+
+	fread(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
 
 	*data = (RGBITEM *)malloc(pixelCounts * sizeof(RGBITEM));
 
@@ -50,7 +53,8 @@ int BMPWriter(const char* filename, BMFILEHEADER* header, INFOHEADER * info,RGBQ
 	unsigned pixelCounts = rowPixelNumber * info->height;
 	fwrite(header, 14, 1, fp);
 	fwrite(info, sizeof(INFOHEADER), 1, fp);
-	fseek(fp, offset, 0);
+	int t = sizeof(INFOHEADER);
+	fwrite(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
 
 	for (size_t i = 0; i < info->height; i++)
 	{
@@ -58,6 +62,63 @@ int BMPWriter(const char* filename, BMFILEHEADER* header, INFOHEADER * info,RGBQ
 		fseek(fp, remanentByteOfRow, SEEK_CUR);
 	}
 
+	fclose(fp);
+	return pixelCounts;
+}
+
+int BMPWriter8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RGBQUAD ** palette, unsigned char ** data) {
+	FILE *fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		perror("File access error!cannot access file£º%s\n", filename);
+		exit(0);
+	}
+
+	unsigned offset = *(int *)(header->offset);
+	unsigned realWidth = info->sizeImage / info->height;
+	unsigned rowPixelNumber = info->width;
+	unsigned remanentByteOfRow = realWidth - info->width;
+	unsigned pixelCounts = rowPixelNumber * info->height;
+	fwrite(header, 14, 1, fp);
+	fwrite(info, sizeof(INFOHEADER), 1, fp);
+	int t = sizeof(INFOHEADER);
+	fwrite(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
+
+	for (size_t i = 0; i < info->height; i++)
+	{
+		//long p = *data;
+		fwrite((*data) + i * rowPixelNumber, rowPixelNumber, 1, fp);
+		fseek(fp, remanentByteOfRow, SEEK_CUR);
+	}
+
+	fclose(fp);
+	return pixelCounts;
+}
+int BMPReader8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RGBQUAD ** palette, unsigned char ** data) {
+	FILE *fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		perror("File access error!cannot access file£º%s\n", filename);
+		exit(0);
+	}
+
+	unsigned offset = *(int *)(header->offset);
+	unsigned realWidth = info->sizeImage / info->height;
+	unsigned rowPixelNumber = info->width;
+	unsigned remanentByteOfRow = realWidth - info->width;
+	unsigned pixelCounts = rowPixelNumber * info->height;
+	
+	*palette = malloc(info->colorUsed * sizeof(RGBQUAD));
+
+	fread(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
+
+	*data = malloc(pixelCounts);
+
+	for (size_t i = 0; i < info->height; i++)
+	{
+		fread(*data + i * rowPixelNumber, 1, rowPixelNumber, fp);
+		fseek(fp, remanentByteOfRow, SEEK_CUR);
+	}
 	fclose(fp);
 	return pixelCounts;
 }
