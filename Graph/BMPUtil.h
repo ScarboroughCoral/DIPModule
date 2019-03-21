@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "BMP.h"
+
 /*
 *Summary: read bmp file
 *Parameters:

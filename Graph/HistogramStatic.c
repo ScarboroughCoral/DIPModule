@@ -13,7 +13,7 @@ void HistogramStatic() {
 
 	BMFILEHEADER header;
 	INFOHEADER info;
-	unsigned char ** data = malloc(sizeof(RGBITEM*));
+	unsigned char ** data = malloc(sizeof(unsigned char*));
 	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
 
 	unsigned pixelCounts = BMPReader8("2.bmp", &header, &info, palette, data);
@@ -23,7 +23,7 @@ void HistogramStatic() {
 	double cumulativeDistribution[256] = { 0 };
 
 
-	//24位真彩色求灰度
+	//8位灰度统计
 	for (size_t i = 0; i < pixelCounts; i++)
 	{
 		

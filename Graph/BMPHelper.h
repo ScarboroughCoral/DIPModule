@@ -5,3 +5,5 @@
 #include "BMPUtil.h"
 
 #include "Histogram.h"
+
+#include "SpatialDomainFilter.h"

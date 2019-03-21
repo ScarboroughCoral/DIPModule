@@ -30,6 +30,12 @@
     <ClCompile Include="Histogram.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SpatialDomainFilter.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Algo.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMP.h">
@@ -42,6 +48,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Histogram.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SpatialDomainFilter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Algo.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

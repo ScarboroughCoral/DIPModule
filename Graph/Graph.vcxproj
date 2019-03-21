@@ -116,17 +116,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Algo.c" />
     <ClCompile Include="BMP.c" />
     <ClCompile Include="BMPUtil.c" />
     <ClCompile Include="Histogram.c" />
     <ClCompile Include="HistogramStatic.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="SpatialDomainFilter.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algo.h" />
     <ClInclude Include="BMP.h" />
     <ClInclude Include="BMPHelper.h" />
     <ClInclude Include="BMPUtil.h" />
     <ClInclude Include="Histogram.h" />
+    <ClInclude Include="SpatialDomainFilter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
