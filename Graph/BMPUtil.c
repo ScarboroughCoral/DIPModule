@@ -53,9 +53,11 @@ int BMPReader8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RG
 	unsigned remanentByteOfRow = realWidth - info->width;
 	unsigned pixelCounts = rowPixelNumber * info->height;
 
-	*palette = (RGBQUAD *)malloc(info->colorUsed * sizeof(RGBQUAD));
+	//*palette = (RGBQUAD *)malloc(info->colorUsed * sizeof(RGBQUAD));
+	*palette = (RGBQUAD *)malloc(256 * sizeof(RGBQUAD));
 
-	fread(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
+	//fread(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
+	fread(*palette, sizeof(RGBQUAD), 256, fp);
 
 	*data = malloc(pixelCounts);
 
@@ -112,7 +114,8 @@ int BMPWriter8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RG
 	fwrite(header, 14, 1, fp);
 	fwrite(info, sizeof(INFOHEADER), 1, fp);
 	int t = sizeof(INFOHEADER);
-	fwrite(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
+	//fwrite(*palette, sizeof(RGBQUAD), info->colorUsed, fp);
+	fwrite(*palette, sizeof(RGBQUAD), 256, fp);
 
 	for (size_t i = 0; i < info->height; i++)
 	{

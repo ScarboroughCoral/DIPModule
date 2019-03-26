@@ -44,12 +44,12 @@ void AverageProcessing(const char * src, const char * output)
 			int newGray = *(*data + (i - 1) * info.width + (j - 1)) +
 				*(*data + (i)* info.width + (j - 1)) +
 				*(*data + (i + 1)* info.width + (j - 1)) +
-				+*(*data + (i - 1)* info.width + (j)) +
-				+*(*data + (i)* info.width + (j)) +
-				+*(*data + (i + 1)* info.width + (j)) +
-				+*(*data + (i - 1)* info.width + (j + 1)) +
-				+*(*data + (i)* info.width + (j + 1)) +
-				+*(*data + (i + 1)* info.width + (j + 1));
+				*(*data + (i - 1)* info.width + (j)) +
+				*(*data + (i)* info.width + (j)) +
+				*(*data + (i + 1)* info.width + (j)) +
+				*(*data + (i - 1)* info.width + (j + 1)) +
+				*(*data + (i)* info.width + (j + 1)) +
+				*(*data + (i + 1)* info.width + (j + 1));
 			newGray /= 9;
 			*(*outData + i * info.width+j) = newGray;
 		}
@@ -81,18 +81,106 @@ void MedianFiltering(const char * src, const char * output)
 		{
 			if (i == 0 || (i == info.height - 1) || j == 0 || (j == info.width - 1))
 			{
-				*(*outData + i * info.width + j) = *(*data + i * info.width + j);
+				if (i==0&&j==0)
+				{
+
+					int newGrays[] = { *(*data + (i)* info.width + (j)) ,
+										*(*data + (i + 1)* info.width + (j)) ,
+										*(*data + (i)* info.width + (j + 1)) ,
+										*(*data + (i + 1)* info.width + (j + 1)) };
+					quicksort(newGrays, 0, 3);
+					int newGray = newGrays[2];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (i==0&& j == info.width - 1)
+				{
+					int newGrays[] = { *(*data + (i)* info.width + (j - 1)) ,
+									*(*data + (i + 1)* info.width + (j - 1)) ,
+									*(*data + (i)* info.width + (j)) ,
+									*(*data + (i + 1)* info.width + (j)) };
+					quicksort(newGrays, 0, 3);
+					int newGray = newGrays[2];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (i == info.height - 1&&j==0)
+				{
+					int newGrays[] = { *(*data + (i - 1)* info.width + (j)) ,
+										*(*data + (i)* info.width + (j)) ,
+										*(*data + (i - 1)* info.width + (j + 1)) ,
+										*(*data + (i)* info.width + (j + 1)) };
+					quicksort(newGrays, 0, 3);
+					int newGray = newGrays[2];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (i == info.height - 1&& j == info.width - 1)
+				{
+					int newGrays[] = { *(*data + (i - 1) * info.width + (j - 1)) ,
+										*(*data + (i)* info.width + (j - 1)) ,
+										*(*data + (i - 1)* info.width + (j)) ,
+										*(*data + (i)* info.width + (j))};
+					quicksort(newGrays, 0, 3);
+					int newGray = newGrays[2];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (i == 0)
+				{
+					int newGrays[] = { *(*data + (i)* info.width + (j - 1)) ,
+									*(*data + (i + 1)* info.width + (j - 1)) ,
+									*(*data + (i)* info.width + (j)) ,
+									*(*data + (i + 1)* info.width + (j)) ,
+									*(*data + (i)* info.width + (j + 1)) ,
+									*(*data + (i + 1)* info.width + (j + 1)) };
+					quicksort(newGrays, 0, 5);
+					int newGray = newGrays[3];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (j == 0)
+				{
+					int newGrays[] = {*(*data + (i - 1)* info.width + (j)) ,
+									*(*data + (i)* info.width + (j)) ,
+									*(*data + (i + 1)* info.width + (j)) ,
+									*(*data + (i - 1)* info.width + (j + 1)) ,
+									*(*data + (i)* info.width + (j + 1)) ,
+									*(*data + (i + 1)* info.width + (j + 1)) };
+					quicksort(newGrays, 0, 5);
+					int newGray = newGrays[3];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (i == info.height - 1)
+				{
+					int newGrays[] = { *(*data + (i - 1) * info.width + (j - 1)) ,
+										*(*data + (i)* info.width + (j - 1)) ,
+										*(*data + (i - 1)* info.width + (j)) ,
+										*(*data + (i)* info.width + (j)) ,
+										*(*data + (i - 1)* info.width + (j + 1)) ,
+										*(*data + (i)* info.width + (j + 1)) };
+					quicksort(newGrays, 0, 5);
+					int newGray = newGrays[3];
+					*(*outData + i * info.width + j) = newGray;
+				}
+				else if (j == info.width - 1)
+				{
+				int newGrays[] = { *(*data + (i - 1) * info.width + (j - 1)) ,
+									*(*data + (i)* info.width + (j - 1)) ,
+									*(*data + (i + 1)* info.width + (j - 1)) ,
+									*(*data + (i - 1)* info.width + (j)) ,
+									*(*data + (i)* info.width + (j)) ,
+									*(*data + (i + 1)* info.width + (j)) };
+				quicksort(newGrays, 0, 5);
+				int newGray = newGrays[3];
+					*(*outData + i * info.width + j) = newGray;
+				}
 				continue;
 			}
 			int newGrays[] = { *(*data + (i - 1) * info.width + (j - 1)) ,
 				*(*data + (i)* info.width + (j - 1)) ,
 				*(*data + (i + 1)* info.width + (j - 1)) ,
-				+*(*data + (i - 1)* info.width + (j)) ,
-				+*(*data + (i)* info.width + (j)) ,
-				+*(*data + (i + 1)* info.width + (j)) ,
-				+*(*data + (i - 1)* info.width + (j + 1)) ,
-				+*(*data + (i)* info.width + (j + 1)) ,
-				+*(*data + (i + 1)* info.width + (j + 1)) };
+				*(*data + (i - 1)* info.width + (j)) ,
+				*(*data + (i)* info.width + (j)) ,
+				*(*data + (i + 1)* info.width + (j)) ,
+				*(*data + (i - 1)* info.width + (j + 1)) ,
+				*(*data + (i)* info.width + (j + 1)) ,
+				*(*data + (i + 1)* info.width + (j + 1)) };
 			quicksort(newGrays, 0, 8);
 			int newGray = newGrays[4];
 			*(*outData + i * info.width + j) = newGray;
