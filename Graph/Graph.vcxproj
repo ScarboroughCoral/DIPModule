@@ -124,6 +124,7 @@
     <ClCompile Include="HistogramStatic.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="SpatialDomainFilter.c" />
+    <ClCompile Include="Transformation.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algo.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="EdgeDetection.h" />
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="SpatialDomainFilter.h" />
+    <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

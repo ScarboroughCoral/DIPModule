@@ -39,6 +39,9 @@
     <ClCompile Include="EdgeDetection.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Transformation.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMP.h">
@@ -60,6 +63,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="EdgeDetection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformation.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
