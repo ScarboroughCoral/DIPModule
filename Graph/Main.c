@@ -4,15 +4,12 @@
 
 #pragma warning(disable : 4996)
 
+
+
+
 int main(){
 	
-	/*int a, b, c, d, e, f;
-
-	const char * buffer = "1 2 3 4 5 6";
-
-	int result = sscanf(buffer, "%d %d %d %d %d %d", &a, &b, &c, &d, &e, &f);
-
-	printf("输入了%d个数，分别为%d %d %d %d %d %d",result, a, b, c, d, e, f);*/
+	
 	
 	/*
 	第一次作业：BMP文件处理
@@ -50,7 +47,7 @@ int main(){
 
 	//图像缩放
 
-	//transform("3-3.bmp", "scale.bmp", TRANSFORM_SCALE, 1.5, 1.5);
+	//transform("3-3.bmp", "scale.bmp", TRANSFORM_SCALE, 3, 4);
 
 	//图像平移
 
@@ -63,8 +60,10 @@ int main(){
 	//transform("3-3.bmp", "y-mirror.bmp", TRANSFORM_MIRROR, -1, 0);
 
 	//图像旋转
+	//transform("3-3.bmp", "rotate.bmp", TRANSFORM_ROTATE, PI/8, 0);
 
-	transform("3-3.bmp", "rotate.bmp", TRANSFORM_ROTATE, PI/8, 0);
+
+
 
 	system("pause");
 	return 0;

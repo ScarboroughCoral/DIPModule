@@ -32,36 +32,48 @@ void scale(const char * from, const char * to, double xScale, double yScale)
 	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
 	unsigned pixelCounts = BMPReader8(from, &header, &info, palette, data);
 
+
 	unsigned char **outData = malloc(sizeof(unsigned char*));
 
-	*outData = malloc(pixelCounts);
-	for (unsigned i = 0; i < info.height; i++)
+	INFOHEADER outInfo = info;
+	BMFILEHEADER outHeader = header;
+	if (xScale>1||yScale>1)
+	{
+		outInfo.width *= xScale;
+		outInfo.height *= yScale;
+		outInfo.sizeImage = (outInfo.width  +3)/4*4 * outInfo.height;
+		*(int *)outHeader.size += outInfo.sizeImage - info.sizeImage;
+		*outData = malloc(outInfo.sizeImage);
+
+	}
+	else
+	{
+		*outData = malloc(pixelCounts);
+	}
+	for (unsigned i = 0; i < outInfo.height; i++)
 	{
 
-		for (unsigned j = 0; j < info.width; j++)
+		for (unsigned j = 0; j < outInfo.width; j++)
 		{
 
-			*(*outData + i * info.width + j) = WHITE;
+			*(*outData + i * outInfo.width + j) = WHITE;
 		}
 	}
-	for (unsigned i = 0; i < (int)(info.height*yScale+0.5); i++)
+	for (unsigned i = 0; i < outInfo.height; i++)
 	{
 
-		for (unsigned j = 0; j < (int)(info.width*xScale + 0.5); j++)
+		for (unsigned j = 0; j < outInfo.width; j++)
 		{
-			if (j >= info.width || i  >= info.height)
-			{
-				continue;
-			}
-			int originI = (i / yScale) + 0.5;
-			int originJ = (j / xScale) + 0.5;
+			
+			int originI = (i / yScale);
+			int originJ = (j / xScale);
 
-			*(*outData + i * info.width + j) = *(*data + originI * info.width + originJ);
+			*(*outData + i * outInfo.width + j) = *(*data + originI * info.width + originJ);
 		}
 	}
 
 
-	BMPWriter8(to, &header, &info, palette, outData);
+	BMPWriter8(to, &outHeader, &outInfo, palette, outData);
 }
 
 void shift(const char * from, const char * to, int xoffset, int yoffset)
