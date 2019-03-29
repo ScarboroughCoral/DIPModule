@@ -2,6 +2,8 @@
 
 数字图像处理实验
 
+:sparkles: 系列博客地址：[扶桑树叶之DIP](http://blog.scarboroughcoral.top/tags/DIP/)
+
 - [x] BMP 文件处理
   - [x] RGB 分离
   - [x] 24位彩色图像灰度化
