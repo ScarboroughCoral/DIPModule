@@ -9,8 +9,6 @@
 
 int main(){
 	
-	
-	
 	/*
 	第一次作业：BMP文件处理
 	*/
@@ -62,8 +60,12 @@ int main(){
 	//图像旋转
 	//transform("3-3.bmp", "rotate.bmp", TRANSFORM_ROTATE, PI/8, 0);
 
+	/*
+	第七次作业：边缘检测
+	*/
 
-
+	EdgeDetection("3-3.bmp", "3-prewitt.bmp", Edge_Dectect_Type_PREWITT);
+	EdgeDetection("3-3.bmp", "3-sobel.bmp", Edge_Dectect_Type_SOBEL);
 
 	system("pause");
 	return 0;

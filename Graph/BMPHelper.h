@@ -9,7 +9,7 @@
 #include "SpatialDomainFilter.h"
 
 #include "Transformation.h"
-
+#include "EdgeDetection.h"
 
 #define WHITE 255
 #define BLACK 0

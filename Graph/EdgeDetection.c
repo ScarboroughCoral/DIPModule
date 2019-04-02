@@ -1,4 +1,4 @@
-#include "EdgeDetection.h"
+
 #include "BMPHelper.h"
 
 void EdgeDetection(const char * from, const char * to, int type)
@@ -47,16 +47,27 @@ void Prewitt(const char * from, const char * to)
 				*(*outData + i * info.width + j) = *(*data + i * info.width + j);
 				continue;
 			}
-			int newGray = *(*data + (i - 1) * info.width + (j - 1)) +
-				*(*data + (i)* info.width + (j - 1)) +
+			int newGrayV = -*(*data + (i - 1) * info.width + (j - 1)) -
+				*(*data + (i)* info.width + (j - 1)) -
 				*(*data + (i + 1)* info.width + (j - 1)) +
-				+*(*data + (i - 1)* info.width + (j)) +
-				+*(*data + (i)* info.width + (j)) +
-				+*(*data + (i + 1)* info.width + (j)) +
-				+*(*data + (i - 1)* info.width + (j + 1)) +
-				+*(*data + (i)* info.width + (j + 1)) +
-				+*(*data + (i + 1)* info.width + (j + 1));
-			newGray /= 9;
+				*(*data + (i - 1)* info.width + (j + 1)) +
+				*(*data + (i)* info.width + (j + 1)) +
+				*(*data + (i + 1)* info.width + (j + 1));
+			int newGrayH = -*(*data + (i - 1) * info.width + (j - 1)) +
+				*(*data + (i + 1)* info.width + (j - 1)) -
+				*(*data + (i - 1)* info.width + (j)) +
+				*(*data + (i + 1)* info.width + (j)) -
+				*(*data + (i - 1)* info.width + (j + 1)) +
+				*(*data + (i + 1)* info.width + (j + 1));
+			int newGray = newGrayV + newGrayH;
+			if (newGray>255)
+			{
+				newGray = 255;
+			}
+			if (newGray < 0)
+			{
+				newGray = 0;
+			}
 			*(*outData + i * info.width + j) = newGray;
 		}
 	}
@@ -66,6 +77,55 @@ void Prewitt(const char * from, const char * to)
 
 void Sobel(const char * from, const char * to)
 {
+	BMFILEHEADER header;
+	INFOHEADER info;
+
+
+	unsigned char ** data = malloc(sizeof(unsigned char*));
+	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
+	unsigned pixelCounts = BMPReader8(from, &header, &info, palette, data);
+
+	unsigned char **outData = malloc(sizeof(unsigned char*));
+
+	*outData = malloc(pixelCounts);
+
+
+	for (unsigned i = 0; i < info.height; i++)
+	{
+
+		for (unsigned j = 0; j < info.width; j++)
+		{
+			if (i == 0 || (i == info.height - 1) || j == 0 || (j == info.width - 1))
+			{
+				*(*outData + i * info.width + j) = *(*data + i * info.width + j);
+				continue;
+			}
+			int newGrayV = -*(*data + (i - 1) * info.width + (j - 1)) -
+				*(*data + (i)* info.width + (j - 1))*2 -
+				*(*data + (i + 1)* info.width + (j - 1)) +
+				*(*data + (i - 1)* info.width + (j + 1)) +
+				*(*data + (i)* info.width + (j + 1))*2 +
+				*(*data + (i + 1)* info.width + (j + 1));
+			int newGrayH = -*(*data + (i - 1) * info.width + (j - 1)) +
+				*(*data + (i + 1)* info.width + (j - 1)) -
+				*(*data + (i - 1)* info.width + (j))*2 +
+				*(*data + (i + 1)* info.width + (j))*2 -
+				*(*data + (i - 1)* info.width + (j + 1)) +
+				*(*data + (i + 1)* info.width + (j + 1));
+			int newGray = newGrayV + newGrayH;
+			if (newGray > 255)
+			{
+				newGray = 255;
+			}
+			if (newGray<0)
+			{
+				newGray = 0;
+			}
+			*(*outData + i * info.width + j) = newGray;
+		}
+	}
+
+	BMPWriter8(to, &header, &info, palette, outData);
 }
 
 void Log(const char * from, const char * to)
