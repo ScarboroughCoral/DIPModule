@@ -10,6 +10,7 @@
 
 #include "Transformation.h"
 #include "EdgeDetection.h"
+#include "ThresholdSegmentation.h"
 
 #define WHITE 255
 #define BLACK 0

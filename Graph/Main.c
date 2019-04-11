@@ -2,13 +2,16 @@
 #include "BMPHelper.h"
 #include <stdio.h>
 
+
 #pragma warning(disable : 4996)
 
 
 
 
 int main(){
+
 	
+
 	/*
 	第一次作业：BMP文件处理
 	*/
@@ -61,11 +64,19 @@ int main(){
 	//transform("3-3.bmp", "rotate.bmp", TRANSFORM_ROTATE, PI/8, 0);
 
 	/*
+	第五次作业：阈值分割
+	*/
+
+	ThresholdSegment("2.bmp", "threshold-seed.bmp", THRESHOLD_SEED, 100);
+	ThresholdSegment("2.bmp", "threshold-iteration.bmp", THRESHOLD_ITERATION, 1);
+	ThresholdSegment("2.bmp", "threshold-ostu.bmp", THRESHOLD_OSTU, 0);
+
+	/*
 	第七次作业：边缘检测
 	*/
 
-	EdgeDetection("3-3.bmp", "3-prewitt.bmp", Edge_Dectect_Type_PREWITT);
-	EdgeDetection("3-3.bmp", "3-sobel.bmp", Edge_Dectect_Type_SOBEL);
+	/*EdgeDetection("3-3.bmp", "3-prewitt.bmp", Edge_Dectect_Type_PREWITT);
+	EdgeDetection("3-3.bmp", "3-sobel.bmp", Edge_Dectect_Type_SOBEL);*/
 
 	system("pause");
 	return 0;
