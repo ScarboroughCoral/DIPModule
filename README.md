@@ -46,26 +46,26 @@
 ├─Debug
 │
 ├─Graph
-│  │  Algo.c  //一些基础算法，eg.quicksort
+│  │  Algo.c                    //一些基础算法，eg.quicksort
 │  │  Algo.h
-│  │  BMP.c  //BMP文件结构体定义
-│  │  BMP.h  //BMP文件处理集合
+│  │  BMP.c                     //BMP文件结构体定义
+│  │  BMP.h                     //BMP文件处理集合
 │  │  BMPHelper.h
-│  │  BMPUtil.c  //BMP文件读写
+│  │  BMPUtil.c                 //BMP文件读写
 │  │  BMPUtil.h
-│  │  EdgeDetection.c  //边缘检测
+│  │  EdgeDetection.c           //边缘检测
 │  │  EdgeDetection.h
-│  │  Histogram.c  //直方图输出
+│  │  Histogram.c               //直方图输出
 │  │  Histogram.h
-│  │  HistogramStatic.c  //直方图处理
+│  │  HistogramStatic.c         //直方图处理
 │  │  Main.c  //入口文件
-│  │  RegionSegmentation.c  //区域划分
+│  │  RegionSegmentation.c      //区域划分
 │  │  RegionSegmentation.h
-│  │  SpatialDomainFilter.c  //空间域滤波处理
+│  │  SpatialDomainFilter.c     //空间域滤波处理
 │  │  SpatialDomainFilter.h
-│  │  ThresholdSegmentation.c  //阈值划分
+│  │  ThresholdSegmentation.c   //阈值划分
 │  │  ThresholdSegmentation.h
-│  │  Transformation.c  //图像基本变换
+│  │  Transformation.c          //图像基本变换
 │  │  Transformation.h
 │  │
 │  ├─Debug
