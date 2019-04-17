@@ -58,7 +58,7 @@
 │  │  Histogram.c               //直方图输出
 │  │  Histogram.h
 │  │  HistogramStatic.c         //直方图处理
-│  │  Main.c  //入口文件
+│  │  Main.c                    //入口文件
 │  │  RegionSegmentation.c      //区域划分
 │  │  RegionSegmentation.h
 │  │  SpatialDomainFilter.c     //空间域滤波处理
