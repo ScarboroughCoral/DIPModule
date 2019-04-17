@@ -48,9 +48,9 @@
 ├─Graph
 │  │  Algo.c                    //一些基础算法，eg.quicksort
 │  │  Algo.h
-│  │  BMP.c                     //BMP文件结构体定义
-│  │  BMP.h                     //BMP文件处理集合
-│  │  BMPHelper.h
+│  │  BMP.c                     //BMP文件结构体定义及文件处理
+│  │  BMP.h      
+│  │  BMPHelper.h               //BMP文件处理集合
 │  │  BMPUtil.c                 //BMP文件读写
 │  │  BMPUtil.h
 │  │  EdgeDetection.c           //边缘检测
