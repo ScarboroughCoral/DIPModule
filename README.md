@@ -4,6 +4,9 @@
 
 :sparkles: 系列博客地址：[扶桑树叶之DIP](http://blog.scarboroughcoral.top/tags/DIP/)
 
+
+## 实验内容
+
 - [x] BMP 文件处理
   - [x] RGB 分离
   - [x] 24位彩色图像灰度化
@@ -33,3 +36,42 @@
   - [ ] Canny（选做）
 - [ ] Hough变换
 - [ ] 区域标记与轮廓提取
+
+## 关键文件目录结构
+
+```
+│  .gitignore
+│  README.md
+│
+├─Debug
+│
+├─Graph
+│  │  Algo.c
+│  │  Algo.h
+│  │  BMP.c
+│  │  BMP.h
+│  │  BMPHelper.h
+│  │  BMPUtil.c
+│  │  BMPUtil.h
+│  │  EdgeDetection.c
+│  │  EdgeDetection.h
+│  │  Histogram.c
+│  │  Histogram.h
+│  │  HistogramStatic.c
+│  │  Main.c
+│  │  RegionSegmentation.h
+│  │  SpatialDomainFilter.c
+│  │  SpatialDomainFilter.h
+│  │  ThresholdSegmentation.c
+│  │  ThresholdSegmentation.h
+│  │  Transformation.c
+│  │  Transformation.h
+│  │
+│  ├─Debug
+│  │
+│  └─x64
+│      └─Debug
+│
+└─x64
+    └─Debug
+```
