@@ -1,6 +1,6 @@
 #include "BMPHelper.h"
 #include <math.h>
-
+#include "Algo.h"
 void ThresholdSegment(const char * from, const char * to, int type, double param)
 {
 	switch (type)
@@ -77,6 +77,7 @@ void iteration(const char * from, const char * to, double e)
 	unsigned pixelCounts = BMPReader8(from, &header, &info, palette, data);
 
 	unsigned char **outData = malloc(sizeof(unsigned char*));
+	
 
 	*outData = malloc(pixelCounts);
 	double lastAverageGrayVal = 0, newAverageGrayVal = 0;
@@ -84,16 +85,22 @@ void iteration(const char * from, const char * to, double e)
 
 	int count0 = 0, count1 = 0;
 
+
+	int *midData = malloc(pixelCounts*sizeof(int));
+
 	for (unsigned i = 0; i < info.height; i++)
 	{
 
 		for (unsigned j = 0; j < info.width; j++)
 		{
-				sum0+=*(*data + i * info.width + j) ;
+			*(midData + i * info.width + j) =*(*data + i * info.width + j) ;
 		}
 	}
-	lastAverageGrayVal = newAverageGrayVal = sum0 / pixelCounts;
-
+	quicksort(midData, 0, pixelCounts - 1);
+	
+	
+	lastAverageGrayVal = newAverageGrayVal = midData[pixelCounts/2];
+	int test = 0;
 	
 	do{
 		sum0 = 0;
@@ -122,6 +129,7 @@ void iteration(const char * from, const char * to, double e)
 
 	} while (fabs(lastAverageGrayVal - newAverageGrayVal) > e);
 
+	printf("%lf\n", newAverageGrayVal);
 
 	for (unsigned i = 0; i < info.height; i++)
 	{

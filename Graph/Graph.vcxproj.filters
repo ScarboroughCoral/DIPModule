@@ -45,6 +45,12 @@
     <ClCompile Include="ThresholdSegmentation.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="RegionSegmentation.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMP.h">
@@ -72,6 +78,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ThresholdSegmentation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RegionSegmentation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "BMPHelper.h"
 #include <stdio.h>
+#include <string.h>
 
 
 #pragma warning(disable : 4996)
@@ -8,9 +9,14 @@
 
 
 
-int main(){
+int main(int argc,const char* argv){
 
-	
+	/*if (argc==1||(argc==2&&(0==strcmp("help",argv[1])|| 0 == strcmp("h", argv[1]))))
+	{
+		printf("Welcome to the BMPBox.\n");
+		printf("You can execute the program with the following functions:\n");
+		printf("DIPModule help/h\t\tlist available subcommands and some concept guides.\n");
+	}*/
 
 	/*
 	第一次作业：BMP文件处理
@@ -67,17 +73,35 @@ int main(){
 	第五次作业：阈值分割
 	*/
 
-	ThresholdSegment("2.bmp", "threshold-seed.bmp", THRESHOLD_SEED, 100);
-	ThresholdSegment("2.bmp", "threshold-iteration.bmp", THRESHOLD_ITERATION, 1);
-	ThresholdSegment("2.bmp", "threshold-ostu.bmp", THRESHOLD_OSTU, 0);
+	//ThresholdSegment("2.bmp", "threshold-seed.bmp", THRESHOLD_SEED, 100);
+	//ThresholdSegment("2.bmp", "threshold-iteration.bmp", THRESHOLD_ITERATION, 10);
+	//ThresholdSegment("2.bmp", "threshold-ostu.bmp", THRESHOLD_OSTU, 0);
+
+
+	/*
+	第六次作业：基于区域的分割
+	*/
+
+
 
 	/*
 	第七次作业：边缘检测
 	*/
+/*	//prewitt
+	EdgeDetection("3-3.bmp", "3-prewitt.bmp", Edge_Dectect_Type_PREWITT);
+	//sobel
+	EdgeDetection("3-3.bmp", "3-sobel.bmp", Edge_Dectect_Type_SOBEL);
+	//log
+	EdgeDetection("3-3.bmp", "3-log.bmp", Edge_Dectect_Type_LOG);*/
 
-	/*EdgeDetection("3-3.bmp", "3-prewitt.bmp", Edge_Dectect_Type_PREWITT);
-	EdgeDetection("3-3.bmp", "3-sobel.bmp", Edge_Dectect_Type_SOBEL);*/
 
+	/*
+	第八次作业：霍夫变换
+	*/
+
+	/*
+	第九次作业：区域标记与轮廓提取
+	*/
 	system("pause");
 	return 0;
 }

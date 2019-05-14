@@ -31,3 +31,4 @@ int BMPReader8(const char* filename, BMFILEHEADER* header, INFOHEADER * info, RG
 
 
 void BMP24To8Gray(const char * from,const char * to);
+
