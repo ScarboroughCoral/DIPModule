@@ -11,8 +11,9 @@ void BMPResolver() {
 	INFOHEADER info;
 	RGBITEM ** data = malloc(sizeof(RGBITEM*));
 	RGBQUAD ** palette = malloc(sizeof(RGBQUAD*));
-
-	unsigned pixelCounts = BMPReader("width.bmp", &header, &info, palette, data);
+	const char* filename = "width.bmp";
+	printf("Read from %s\n", filename);
+	unsigned pixelCounts = BMPReader(filename, &header, &info, palette, data);
 	//ÐÞ¸Äµ¥É«
 	//for (size_t i = 0; i < pixelCounts; i++)
 	//{
@@ -41,7 +42,8 @@ void BMPResolver() {
 		(*data + i)->b = 255 - gray;
 	}
 
-	char * result = "testaw.bmp";
+	char * result = "1-testaw.bmp";
 
 	BMPWriter(result, &header, &info, palette, data);
+	printf("Write to %s\n", result);
 }

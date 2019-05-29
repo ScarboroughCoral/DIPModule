@@ -62,7 +62,7 @@ void seed(const char * from, const char * to, double k)
 	{
 		grayscaleDistributionLatest[i] = histogramLatest[i] * 1.0 / pixelCounts;
 	}
-	outputGrayscaleHistogramWithThresholdMark("threshold-seed-histogram.bmp",grayscaleDistributionLatest,&info,k);
+	outputGrayscaleHistogramWithThresholdMark("5-threshold-seed-histogram.bmp",grayscaleDistributionLatest,&info,k);
 
 }
 
@@ -129,7 +129,7 @@ void iteration(const char * from, const char * to, double e)
 
 	} while (fabs(lastAverageGrayVal - newAverageGrayVal) > e);
 
-	printf("%lf\n", newAverageGrayVal);
+	//printf("%lf\n", newAverageGrayVal);
 
 	for (unsigned i = 0; i < info.height; i++)
 	{
@@ -160,7 +160,7 @@ void iteration(const char * from, const char * to, double e)
 	{
 		grayscaleDistributionLatest[i] = histogramLatest[i] * 1.0 / pixelCounts;
 	}
-	outputGrayscaleHistogramWithThresholdMark("threshold-seed-iteration.bmp", grayscaleDistributionLatest, &info,newAverageGrayVal);
+	outputGrayscaleHistogramWithThresholdMark("5-threshold-seed-iteration.bmp", grayscaleDistributionLatest, &info,newAverageGrayVal);
 }
 
 void ostu(const char * from, const char * to)
@@ -243,7 +243,7 @@ void ostu(const char * from, const char * to)
 	{
 		grayscaleDistributionLatest[i] = histogramLatest[i] * 1.0 / pixelCounts;
 	}
-	outputGrayscaleHistogramWithThresholdMark("threshold-seed-ostu.bmp", grayscaleDistributionLatest, &info,threshold);
+	outputGrayscaleHistogramWithThresholdMark("5-threshold-seed-ostu.bmp", grayscaleDistributionLatest, &info,threshold);
 }
 
 

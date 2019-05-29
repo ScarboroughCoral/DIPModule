@@ -3,9 +3,9 @@
 #include "BMP.h"
 
 #include "BMPUtil.h"
-
+#include "Hough.h"
 #include "Histogram.h"
-
+#include "RegionMarkOutlineExtract.h"
 #include "SpatialDomainFilter.h"
 
 #include "Transformation.h"

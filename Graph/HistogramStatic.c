@@ -9,7 +9,12 @@ void HistogramStatic() {
 
 	// 24位真彩色转8位灰度
 
-	BMP24To8Gray("1.bmp", "2.bmp");
+	const char* filename = "1.bmp";
+	printf("Read from %s\n", filename);
+	const char* filename2 = "2.bmp";
+	BMP24To8Gray(filename, filename2);
+
+	printf("Convert %s to 8bit: %s\n", filename, filename2);
 
 	BMFILEHEADER header;
 	INFOHEADER info;
@@ -68,10 +73,17 @@ void HistogramStatic() {
 	{
 		grayscaleDistributionLatest[i] = histogramLatest[i] * 1.0 / pixelCounts;
 	}
-	BMPWriter8("3.bmp", &header, &info, palette, data);
-	outputGrayscaleHistogram("4.bmp", grayscaleDistribution, &info);
-	outputGrayscaleHistogram("5.bmp", grayscaleDistributionLatest, &info);
-	printf("%f\n", cumulativeDistribution[L - 1]);
+
+	const char *out = "2-3.bmp";
+	printf("Write to %s\n", out);
+	BMPWriter8(out, &header, &info, palette, data);
+	const char * originHistogram = "2-4.bmp";
+	printf("Original Histogram Write to %s\n", originHistogram);
+	const char * latestHistogram = "2-5.bmp";
+	printf("Latest Histogram Write to %s\n", latestHistogram);
+	outputGrayscaleHistogram(originHistogram, grayscaleDistribution, &info);
+	outputGrayscaleHistogram(latestHistogram, grayscaleDistributionLatest, &info);
+	//printf("%f\n", cumulativeDistribution[L - 1]);
 	//BMPWriter("histogramout.bmp", &header, &info, palette, data);
 
 

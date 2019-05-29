@@ -122,7 +122,9 @@
     <ClCompile Include="EdgeDetection.c" />
     <ClCompile Include="Histogram.c" />
     <ClCompile Include="HistogramStatic.c" />
+    <ClCompile Include="Hough.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="RegionMarkOutlineExtract.c" />
     <ClCompile Include="RegionSegmentation.c" />
     <ClCompile Include="SpatialDomainFilter.c" />
     <ClCompile Include="Stack.c" />
@@ -136,6 +138,8 @@
     <ClInclude Include="BMPUtil.h" />
     <ClInclude Include="EdgeDetection.h" />
     <ClInclude Include="Histogram.h" />
+    <ClInclude Include="Hough.h" />
+    <ClInclude Include="RegionMarkOutlineExtract.h" />
     <ClInclude Include="RegionSegmentation.h" />
     <ClInclude Include="SpatialDomainFilter.h" />
     <ClInclude Include="Stack.h" />
