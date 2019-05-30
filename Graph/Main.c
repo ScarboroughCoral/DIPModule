@@ -231,10 +231,17 @@ int main(int argc,const char* argv){
 	*/
 	printf("9.区域标记与轮廓提取 Processing...\n");
 
-	
 
-	printf("Read from %s\n", "x");
-	printf("Write hough to %s\n", "x");
+	const char * markFrom = "9.bmp";
+	const char *markTo = "9-mark.bmp";
+	const char *outlineTo = "9-outline.bmp";
+	printf("Read from %s\n", markFrom);
+	printf("Write mark to %s\n", markTo);
+	RegionMark(markFrom, markTo);
+
+	printf("Write outline to %s\n", markTo);
+
+	OutlineExtract(markFrom, outlineTo);
 
 	printf("All done.\n");
 	printf("\n");

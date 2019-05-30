@@ -38,6 +38,8 @@
   - [x] 线检测
   - [ ] 圆检测（选做）
 - [ ] 区域标记与轮廓提取
+  - [x] 区域连通域分析标记
+  - [x] 轮廓提取
 
 ## 关键文件目录结构
 
@@ -60,6 +62,10 @@
 │  │  Histogram.c               //直方图输出
 │  │  Histogram.h
 │  │  HistogramStatic.c         //直方图处理
+│  │  Hough.c					//霍夫变换
+│  │  Hough.h
+│  │  RegionMarkOutlineExtract.c//区域标记和轮廓提取
+│  │  RegionMarkOutlineExtract.h
 │  │  Main.c                    //入口文件
 │  │  RegionSegmentation.c      //区域划分
 │  │  RegionSegmentation.h
