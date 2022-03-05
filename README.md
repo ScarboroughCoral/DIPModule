@@ -2,7 +2,7 @@
 
 数字图像处理实验
 
-:sparkles: 系列博客地址：[扶桑树叶之DIP](http://blog.scarboroughcoral.top/tags/DIP/)
+:sparkles: 系列博客地址：[扶桑树叶之DIP](https://scarboroughcoral.github.io/tags/DIP/)
 
 
 ## 实验内容
@@ -25,7 +25,7 @@
   - [ ] 透视变换（选做）
 - [x] 阈值分割
   - [x]  给定阈值T
-  - [ ] 双峰法（极小点阈值法）（选做——就是不做）
+  - [ ] 双峰法（极小点阈值法）（选做）
   - [x]  迭代阈值法
   - [x]  Otsu(大津算法)
 - [ ] 基于区域的分割
